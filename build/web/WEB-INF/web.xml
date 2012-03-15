@@ -14,6 +14,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>regdoc.jsp</welcome-file>
+        <welcome-file>example/HelloWorld.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
