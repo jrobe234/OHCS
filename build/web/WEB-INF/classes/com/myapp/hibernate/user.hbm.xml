@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="com.myapp.hibernate">
+  
+  <class name="User" table="user" lazy="true">
+    <cache usage="read-write"/>
+    <id name="userid" type="int" column="userid">
+      <generator class="native" />
+    </id>
+    
+   <!-- The first name is from java file, the second column is from db -->
+    
+    <property name="email" column="email" type="string"></property>  
+    <property name="password" column="password" type="string"></property>  
+    <property name="fname" column="fname" type="string"></property>  
+    <property name="lname" column="lname" type="string"></property>   
+    <property name="gender" column="gender" type="string"></property>    
+    <property name="dob" column="dob" type="timestamp"></property>   
+    <property name="address" column="address" type="string"></property>    
+    <property name="phone" column="phone" type="int"></property>  
+    <property name="userType" column="user_type" type="int"></property>
+    <property name="guestUser" column="guest_user" type="int"></property>
+    <property name="location" column="location" type="string"></property> 
+    <property name="latitude" column="latitude" type="float"></property>   
+    <property name="longitude" column="longitude" type="float"></property>  
+    <property name="shortDescription" column="short_description" type="string"></property>  
+    <property name="longDescription" column="long_description" type="string"></property> 
+    <property name="photoPath" column="photo_path" type="string"></property>
+     
+  </class>
+  
+</hibernate-mapping>

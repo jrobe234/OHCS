@@ -1,0 +1,166 @@
+a:link 		{color: #000000; text-decoration: underline;}
+a:visited	{color: #000000; text-decoration: underline;}
+a:hover		{color: #FF0000; text-decoration: none;}
+a:active	{color: #FF0000; text-decoration: none;}
+
+body {
+
+	text-align: center;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 20px;
+	color: #333333;
+	width:980px;
+	margin:auto;
+
+}
+
+#content {
+    
+    width: 980px;
+    height: 1000px;
+}
+
+#content_x {
+	width: 980px;
+}
+
+#header {
+	margin: 0px auto auto;
+	margin-top:15px;
+	width: 980px;
+	color: #000000;
+	padding: 0px;
+	text-align: left;
+	height:100px;
+}
+
+#header #title {
+	
+	font-size:20px;
+        color: #F00;
+}
+
+#profile_left {
+	
+	width:200px;
+	float:left;
+	border: 5px double #efefef;
+}
+
+#profile_right {
+	
+	width:770px;
+	float:right;
+
+}
+
+#profile_right #general {
+	margin: auto auto 10px;
+	width: 750px;
+	text-align: left;
+	padding: 10px;
+	border: 5px double #efefef;
+	height: 240px;
+}
+
+#general #general_left{
+	
+	float:left;
+	width: 500px;
+}
+
+#general .cell {
+	width: 500px;
+}
+
+#general .cell .general_left_font{
+	font-weight:bold;	
+}
+
+#general #general_right{
+	
+	float: right;
+	width: 240px;
+	border: 5px double #efefef;
+}
+
+#profile_right #description{
+        margin: auto auto 10px;
+	width: 750px;
+	padding: 10px;
+	text-align: left;
+	border: 5px double #efefef;
+    
+}
+
+#profile_right #objective {
+	margin: auto auto 10px;
+	width: 750px;
+	padding: 10px;
+	text-align: left;
+	border: 5px double #efefef;
+}
+#profile_right #skillareas {
+	margin: auto auto 10px;
+	width: 750px;
+	padding: 10px;
+	border: 5px double #efefef;
+	text-align: left;
+}
+#profile_right #history {
+	margin: auto auto 10px;
+	width: 750px;
+	padding: 10px;
+	border: 5px double #efefef;
+	text-align: left;
+}
+#profile_right #awards {
+	margin: auto;
+	width: 750px;
+	padding: 10px;
+	border: 5px double #efefef;
+	text-align: left;
+        
+}
+
+#register_body {
+
+	width:980px;
+	text-align: left;
+	border: 5px double #efefef;
+	font-size:12px;
+	margin: auto;
+        height:1600px;
+}
+
+#register_body .row_left{
+	
+	width: 150px;
+        float: left;
+        margin-top:5px;
+        margin-left: 10px;
+        height:27px;
+}
+
+#register_body .row_right{
+	
+	width:800px;
+        float:right;
+        margin-top:5px;
+        margin-left: 10px;
+        height:27px;
+}
+
+#register_body .row_right input{
+	
+        width: 200px;
+}
+
+#footer {
+	
+	border: 5px double #efefef;
+	width:980px;
+	height:100px;
+	margin-top:20px;
+}
