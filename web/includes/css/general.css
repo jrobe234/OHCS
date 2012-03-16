@@ -6,7 +6,29 @@ body {
     margin: 0; 
     padding: 0 ;
 }
-#map_canvas { 
+.map {
     height: 100%;
     width: 100%;
 }
+
+    .map .search {
+        width: 100%;
+        height: 100px;
+    }
+    
+    .map #map_canvas { 
+        height: 100%;
+        width: 100%;
+    }
+    
+    .map .leftcol { 
+        float: left;
+        height: 100%;
+        width: 75%;
+    }
+    
+    .map .rightcol { 
+        float: left;
+        height: 100%;
+        width: 25%;
+    }
