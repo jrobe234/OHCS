@@ -25,8 +25,12 @@
                     </div>
                 </div>
                 <div class="leftcol">
-                    <div id="temp"></div>
+                    <div id="list">
+                        
+                    </div>
                 </div>
+                <div class="clear"></div>
+                
             </div>
         </div>
     </body>

@@ -13,13 +13,15 @@
         JSONObject marker;
 
         dbConnect conn = new dbConnect();
-        String query = "SELECT * FROM location WHERE ";
+        String query = "SELECT * FROM healthcareServices INNER JOIN location ON healthcareServices.locationID = location.locationID WHERE ";
 
         query += "latitude < " + north + " AND latitude > " + south + " AND longitude < " + east + " AND longitude > " + west + ";";
         ResultSet results = conn.executeQuery(query);
         while (results.next()) {
             marker = new JSONObject();
-            marker.put("postcode", results.getString("postcode"));
+            marker.put("ID", results.getString("healthcareID"));
+            marker.put("name", results.getString("name"));
+            marker.put("phone", results.getString("phone"));
             marker.put("longitude", results.getString("longitude"));
             marker.put("latitude", results.getString("latitude"));
             markers.add(marker);

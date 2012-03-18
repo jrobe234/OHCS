@@ -62,14 +62,15 @@ function initialize() {
         },
         function(data){
             var markers = data.markers;
-            document.getElementById("temp").innerHTML = markers;
+            var list = "";
             for (var i = 0; i < markers.length; i++) {
+                list = list +  "<div class=\"listItem\">" + markers[i].name + "</div>";
                 var marker = new google.maps.Marker({
                     position: new google.maps.LatLng(markers[i].latitude, markers[i].longitude),
                     map: map
                 })
-                
             }
+            document.getElementById('list').innerHTML = list;
         },
         "json"
         )
