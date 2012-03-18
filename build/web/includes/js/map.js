@@ -1,57 +1,79 @@
- $(document).ready(function(){
+function getMax(center, bounds){
+    var ne = new google.maps.LatLng(bounds.getNorthEast().lat(), bounds.getNorthEast().lng());
+    var sw = new google.maps.LatLng(bounds.getSouthWest().lat(), bounds.getSouthWest().lng());
+    var maxBounds = new google.maps.LatLngBounds(sw, ne);
+    return maxBounds;
+}
 
-  var mapOptions = {
-       zoom: 10,
-       mapTypeId: google.maps.MapTypeId.ROADMAP,
-       center: new google.maps.LatLng(41.06000,28.98700)
-     };
+function initialize() {
+    var defaultBounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(-10.4121, 113.0918),
+    new google.maps.LatLng(-43.3840, 153.023036)
+);
+        
+    var mapOptions = {
+        center: new google.maps.LatLng(-27.470280,153.023036),
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    
+    var options = {
+        bounds: defaultBounds
+    }
+    /**
+   downloadUrl("markers", function(data) {
+      var markers = data.documentElement.getElementsByTagName("marker");
+      for (var i = 0; i < markers.length; i++) {
+        var latlng = new google.maps.LatLng(parseFloat(markers[i].getAttribute("latitude")),
+                                    parseFloat(markers[i].getAttribute("longitude")));
+        var marker = new google.maps.Marker({position: latlng, map: map});
+       }
+     });*/
+    
+       
+    var input = document.getElementById('searchTextField');
+    var autocomplete = new google.maps.places.Autocomplete(input, options);
 
-  var map = new google.maps.Map(document.getElementById("map"),mapOptions);
+    autocomplete.bindTo('bounds', map);
 
-  var geocoder = new google.maps.Geocoder();  
-
-     $(function() {
-         $("#searchbox").autocomplete({
-         
-           source: function(request, response) {
-
-          if (geocoder == null){
-           geocoder = new google.maps.Geocoder();
-          }
-             geocoder.geocode( {'address': request.term }, function(results, status) {
-               if (status == google.maps.GeocoderStatus.OK) {
-
-                  var searchLoc = results[0].geometry.location;
-               var lat = results[0].geometry.location.lat();
-                  var lng = results[0].geometry.location.lng();
-                  var latlng = new google.maps.LatLng(lat, lng);
-                  var bounds = results[0].geometry.bounds;
-
-                  geocoder.geocode({'latLng': latlng}, function(results1, status1) {
-                      if (status1 == google.maps.GeocoderStatus.OK) {
-                        if (results1[1]) {
-                         response($.map(results1, function(loc) {
-                        return {
-                            label  : loc.formatted_address,
-                            value  : loc.formatted_address,
-                            bounds   : loc.geometry.bounds
-                          }
-                        }));
-                        }
-                      }
-                    });
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        var place = autocomplete.getPlace();
+        if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+        } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(15);
+        }
+    });
+    
+    google.maps.event.addListener(map, 'idle', function() {
+        var center = map.getCenter();
+        var bounds = map.getBounds();
+        var maxBounds = getMax(center, bounds);
+        //alert("north=" + maxBounds.getNorthEast().lat() + ";east=" + maxBounds.getNorthEast().lng() + ";south=" + maxBounds.getSouthWest().lat() + ";west=" + maxBounds.getSouthWest().lng() + "");
+        $.post(
+        "markers",
+        {
+            "north": maxBounds.getNorthEast().lat(),
+            "east": maxBounds.getNorthEast().lng(),
+            "south": maxBounds.getSouthWest().lat(),
+            "west": maxBounds.getSouthWest().lng()
+        },
+        function(data){
+            var markers = data.markers;
+            document.getElementById("temp").innerHTML = markers;
+            for (var i = 0; i < markers.length; i++) {
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(markers[i].latitude, markers[i].longitude),
+                    map: map
+                })
+                
             }
-              });
-           },
-           select: function(event,ui){
-      var pos = ui.item.position;
-      var lct = ui.item.locType;
-      var bounds = ui.item.bounds;
-
-      if (bounds){
-       map.fitBounds(bounds);
-      }
-           }
-         });
-     });   
- });
+        },
+        "json"
+        )
+    });
+    
+}
+google.maps.event.addDomListener(window, 'load', initialize);

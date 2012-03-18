@@ -28,6 +28,10 @@
          <action name="search">
             <result>/WEB-INF/results/search.jsp</result>
         </action>
+        
+        <action name="markers">
+            <result>/WEB-INF/results/markers.jsp</result>
+        </action>
  
         <!--
         If the URL is hello.action the call the execute method of class HelloWorldAction.
