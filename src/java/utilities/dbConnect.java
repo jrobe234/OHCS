@@ -5,23 +5,36 @@ import javax.sql.*;
 
 public class dbConnect {
 
-    com.mysql.jdbc.jdbc2.optional.MysqlDataSource ds;
-    Connection con = null;
-    Statement stmt;
+    java.sql.Connection conn;
+    java.sql.Statement stmt;
+    String connectionString;
+    String dbUser;
+    String dbPass;
 
     public dbConnect() throws SQLException {
-        ds = new com.mysql.jdbc.jdbc2.optional.MysqlDataSource();
-        ds.setServerName("localhost");
-        ds.setPortNumber(3306);
-        ds.setDatabaseName("healthcare");
-        ds.setUser("root");
-        ds.setPassword("password");
+        connectionString = "jdbc:oracle:thin:@oracle.students.itee.uq.edu.au:1521:iteeo";
+        dbUser = "CSSE3005GF";
+        dbPass = "229681";
+        /**
+        connectionString = "jdbc:oracle:thin:@localhost:1521:XE";
+        dbUser = "s4143132";
+        dbPass = "dmartyn46";
+         * */
         connect();
     }
 
     private void connect() throws SQLException {
-        con = ds.getConnection();
-        stmt = con.createStatement();
+        try {
+            //Class.forName("oracle.jdbc.driver.OracleDriver");
+            Class.forName("oracle.jdbc.OracleDriver");
+            conn = java.sql.DriverManager.getConnection(connectionString, dbUser, dbPass);
+            stmt = conn.createStatement();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+        }
     }
 
     public ResultSet executeQuery(String query) throws SQLException {
@@ -33,6 +46,11 @@ public class dbConnect {
     
 
     private void close() throws SQLException {
-        con.close();
+          try {
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+        }
     }
 }
