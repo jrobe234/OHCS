@@ -13,7 +13,7 @@ function initialize() {
         
     var mapOptions = {
         center: new google.maps.LatLng(-27.470280,153.023036),
-        zoom: 15,
+        zoom: 14,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
@@ -43,7 +43,7 @@ function initialize() {
             map.fitBounds(place.geometry.viewport);
         } else {
             map.setCenter(place.geometry.location);
-            map.setZoom(15);
+            map.setZoom(14);
         }
     });
     
