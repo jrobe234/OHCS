@@ -1,47 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC
-    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-    "/WEB-INF/classes/struts-2.3.dtd">
- 
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
 <struts>
-    <!--
-    You could also set the constatnts in the struts.properties file
-    placed in the same directory as struts.xml
-    -->
-    <constant name="struts.devMode" value="true" />
- 
-    <package name="basicstruts2" extends="struts-default" namespace="/">
- 
-        <!--
-        If no class attribute is specified the framework will assume success and
-        render the result index.jsp
-        If no name value for the result node is specified the success value is the default
-        -->
-        <action name="index">
-            <result>/WEB-INF/results/index.jsp</result>
-        </action>
- 
-        <action name="">
-            <result>/WEB-INF/results/index.jsp</result>
-        </action>
-        
-         <action name="search">
-            <result>/WEB-INF/results/search.jsp</result>
-        </action>
-        
-        <action name="markers">
-            <result>/WEB-INF/results/markers.jsp</result>
-        </action>
- 
-        <!--
-        If the URL is hello.action the call the execute method of class HelloWorldAction.
-        If the result returned by the execute method is success render the HelloWorld.jsp
-        -->
-        <action name="hello" class="com.struts2.demo.action.HelloWorldAction" method="execute">
-            <result name="success">/WEB-INF/results/HelloWorld.jsp</result>
-            <result name="input">/WEB-INF/results/index.jsp</result>
-        </action>
- 
-    </package>
- 
+	<package name="default" extends="hibernate-default">
+		<action name="addUser" method="add" class="com.web.UserAction">
+			<result name="success" type="redirect">listUser</result>
+		</action>
+		<action name="listUser" method="list" class="com.web.UserAction">
+			<result name="success">results/register.jsp</result>
+		</action>
+	</package>
 </struts>
