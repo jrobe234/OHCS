@@ -15,9 +15,10 @@
 
 .map .leftcol { 
     float: left;
-    height: 90%;
+    height: 768px;
     width: 20%;
     padding: 20px;
+    overflow: auto;;
 }
 
 .map #map { 
@@ -30,4 +31,10 @@
     height: 100%;
     width: 70%;
     padding: 20px;
+}
+
+.listItem {
+    height: 100px;
+    padding: 10px;
+    border: 1px solid black;
 }

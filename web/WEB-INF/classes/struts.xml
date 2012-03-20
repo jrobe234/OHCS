@@ -30,18 +30,17 @@
         </action>
         
         <action name="markers">
-            <result>/WEB-INF/results/markers.jsp</result>
+            <result>/WEB-INF/servlets/markers.jsp</result>
         </action>
  
         <!--
         If the URL is hello.action the call the execute method of class HelloWorldAction.
         If the result returned by the execute method is success render the HelloWorld.jsp
-        -->
+        
         <action name="hello" class="com.struts2.demo.action.HelloWorldAction" method="execute">
             <result name="success">/WEB-INF/results/HelloWorld.jsp</result>
             <result name="input">/WEB-INF/results/index.jsp</result>
-        </action>
- 
+        </action>-->
     </package>
  
 </struts>
