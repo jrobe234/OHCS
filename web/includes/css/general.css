@@ -15,3 +15,13 @@ body {
 .clear {
     clear:both;
 }
+
+#temp {
+    display: block;
+    width: 100%;
+}
+
+#temp p {
+    display: block;
+    width: 100%;
+}

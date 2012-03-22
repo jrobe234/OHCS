@@ -12,6 +12,7 @@
         <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>  
         <script type="text/javascript" src=" <s:url value="/includes/js/jquery-1.7.1.min.js" />" ></script>
         <script type="text/javascript" src=" <s:url value="/includes/js/map.js" />" ></script>
+        <script type="text/javascript" src=" <s:url value="/includes/js/markerclusterer.js" />" ></script>
 
     </head>
     <body>
@@ -31,7 +32,7 @@
                     </div>
                 </div>
                 <div class="clear"></div>
-                
+                <div id="temp"></div>
             </div>
         </div>
     </body>
