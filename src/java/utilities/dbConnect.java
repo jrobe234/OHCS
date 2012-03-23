@@ -14,6 +14,7 @@ public class dbConnect {
     public dbConnect() throws SQLException {
         connectionString = "jdbc:oracle:thin:@oracle.students.itee.uq.edu.au:1521:iteeo";
         //connectionString = "jdbc:oracle:thin:@localhost:1521:XE";
+        
         dbUser = "CSSE3005GF";
         dbPass = "229681";
         connect();
