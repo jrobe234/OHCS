@@ -13,7 +13,6 @@
         <script type="text/javascript" src=" <s:url value="/includes/js/jquery-1.7.1.min.js" />" ></script>
         <script type="text/javascript" src=" <s:url value="/includes/js/map.js" />" ></script>
         <script type="text/javascript" src=" <s:url value="/includes/js/markerclusterer.js" />" ></script>
-
     </head>
     <body>
         <div class="container">

@@ -34,6 +34,7 @@ function followLink(lat, lng){
 }
 
 function initialize() {
+    
     var defaultBounds = new google.maps.LatLngBounds(
         new google.maps.LatLng(-10.4121, 113.0918),
         new google.maps.LatLng(-43.3840, 153.023036)
@@ -70,7 +71,6 @@ function initialize() {
         var center = globalMap.getCenter();
         var bounds = globalMap.getBounds();
         var maxBounds = getMax(center, bounds, 1000);
-        //alert("north=" + maxBounds.getNorthEast().lat() + ";east=" + maxBounds.getNorthEast().lng() + ";south=" + maxBounds.getSouthWest().lat() + ";west=" + maxBounds.getSouthWest().lng() + "");
         $.post(
             "markers",
             {
@@ -82,7 +82,8 @@ function initialize() {
                 "centerLng": globalMap.getCenter().lng()
             },
             function(data){
-                var markers = data.markers.sort(sort_by('dist', false, parseDouble));   
+                var markers = data.markers.sort(sort_by('dist', false, parseDouble));  
+                
                 if (mc){
                     mc.clearMarkers(); 
                 }
@@ -101,8 +102,8 @@ function initialize() {
                     }
                     
                     var num = i + 1;
-                    var lat= markers[i].latitude;
-                    var lng = markers[i].longitude;
+                    var lat = markers[i].location.latitude;
+                    var lng = markers[i].location.longitude;
                     var content = "<div class=\"listItem\"><h2><a id=\"mapLink\" onclick=\"followLink("+lat+","+lng+")\" href=\"javascript:void(0)\">"+num+":" + markers[i].name + "</a></h2><p>Approx. " + distance + " km away</p></div>";
                     list = list +  content;
                     marker = new google.maps.Marker({
