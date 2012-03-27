@@ -8,12 +8,17 @@
         Double west = Double.parseDouble(request.getParameter("west"));
         Double centerLat = Double.parseDouble(request.getParameter("centerLat"));
         Double centerLng = Double.parseDouble(request.getParameter("centerLng"));
+        String[] filters = request.getParameterValues("filters[]");
 
         if (north != null && south != null && east != null && west != null && centerLat != null && centerLng != null) {
             JSONObject obj = new JSONObject();
             JSONArray markers = new JSONArray();
+            int[] filter = new int[filters.length];
+            for (int j = 0; j < filters.length; j++){
+                filter[j] = Integer.parseInt(filters[j]);
+            }
             
-            MapBounds myMap = new MapBounds(north, south, east, west, centerLat, centerLng);
+            MapBounds myMap = new MapBounds(north, south, east, west, centerLat, centerLng, filter);
             
             markers = myMap.getServicesJSON();
 

@@ -32,7 +32,6 @@
         <action name="markers">
             <result>/WEB-INF/servlets/markers.jsp</result>
         </action>
- 
         <!--
         If the URL is hello.action the call the execute method of class HelloWorldAction.
         If the result returned by the execute method is success render the HelloWorld.jsp

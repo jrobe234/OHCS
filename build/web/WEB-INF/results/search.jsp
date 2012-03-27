@@ -19,6 +19,12 @@
             <div class="map">
                 <div class="search">
                     <input type="text" value="" id="searchTextField">
+                    <div id="filters">
+                    <label for="serviceType">Include on map: </label>
+                    <input type="checkbox" name="serviceType" value="1" checked="checked" id="doctor"/> <img src="<s:url value="/includes/images/1.png"/>"/>Doctor
+                    <input type="checkbox" name="serviceType" value="2" checked="checked" id="hospital"/> <img src="<s:url value="/includes/images/2.png"/>"/> Hospital
+                    <input type="checkbox" name="serviceType" value="3" checked="checked" id="pharmacy"/> <img src="<s:url value="/includes/images/3.png"/>"/> Pharmacy
+                    </div>
                 </div>
                 <div class="rightcol">
                     <div id="map" >

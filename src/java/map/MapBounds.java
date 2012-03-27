@@ -22,20 +22,30 @@ public class MapBounds {
     private LatLng northEast;
     private LatLng southWest;
     private LatLng center;
+    private int[] serviceTypes;
 
-    public MapBounds(double n, double s, double e, double w, double centerLat, double centerLng) {
+    public MapBounds(double n, double s, double e, double w, double centerLat, double centerLng, int[] serviceTypes) {
         northEast = new LatLng(n, e);
         southWest = new LatLng(s, w);
         center = new LatLng(centerLat, centerLng);
+        this.serviceTypes = serviceTypes;
     }
 
     public JSONArray getServicesJSON() throws SQLException {
         JSONArray services = new JSONArray();
         
         dbConnect conn = new dbConnect();
-
         String query = "SELECT * FROM HEALTHCARESERVICES INNER JOIN LOCATION ON HEALTHCARESERVICES.LOCATIONID = LOCATION.LOCATIONID WHERE ";
-
+        
+        String filterStr = "(";
+        for (int i = 0; i < serviceTypes.length; i++){
+            if (filterStr != "(") {
+                filterStr += " OR ";
+            }
+            filterStr += "serviceType = " + serviceTypes[i] + "";
+        }
+        filterStr += ") AND ";
+        query += filterStr;
         query += "latitude < " + this.northEast.getLatitude() + " AND latitude > " + this.southWest.getLatitude() + " AND longitude < " + this.northEast.getLongitude() + " AND longitude > " + this.southWest.getLongitude() + "";
 
         ResultSet results = conn.executeQuery(query);
@@ -49,8 +59,9 @@ public class MapBounds {
             int id = results.getInt("healthcareID");
             String name = results.getString("name");
             String phone = results.getString("phone");
+            int sType = results.getInt("serviceType");
             String desc = "ADD DESCRIPTION TO DATABASE";
-            HealthCareService service = new HealthCareService(id, location, name, phone, desc);
+            HealthCareService service = new HealthCareService(id, location, name, phone, desc, sType);
             JSONObject JSONservice = service.toJSONObject();
             JSONservice.put("dist", dist);
             services.add(JSONservice);

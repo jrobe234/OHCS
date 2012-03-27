@@ -16,13 +16,15 @@ public class HealthCareService {
     private String name;
     private String phone;
     private String desc;
+    private int serviceType;
     
-    public HealthCareService(int ident, Location loc, String nme, String ph, String dsc){
+    public HealthCareService(int ident, Location loc, String nme, String ph, String dsc, int sType){
         id = ident;
         location = loc;
         name = nme; 
         phone = ph;
         desc = dsc; 
+        serviceType = sType;
     }
     
      /**
@@ -102,6 +104,7 @@ public class HealthCareService {
         jsonHCS.put("phone", phone);
         jsonHCS.put("location", location.toJSONObject());
         jsonHCS.put("desc", desc);
+        jsonHCS.put("serviceType", serviceType);
         return jsonHCS;
     }
     

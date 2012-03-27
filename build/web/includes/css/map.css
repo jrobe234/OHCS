@@ -8,7 +8,7 @@
     padding: 20px;
 }
 
-.map input {
+.map input#searchTextField {
     width: 100%;
     height: 40px;
 }

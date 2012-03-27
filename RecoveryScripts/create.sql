@@ -7,7 +7,7 @@ CREATE TABLE location
 
 CREATE TABLE healthcareServices
 	(
-		healthcareID INT NOT NULL, name VARCHAR(50), phone VARCHAR(50), locationID INT,
+		healthcareID INT NOT NULL, name VARCHAR(50), phone VARCHAR(50), serviceType INT, locationID INT,
 		 PRIMARY KEY (healthcareID),
         Foreign Key (locationID) REFERENCES location(locationID)
         );
