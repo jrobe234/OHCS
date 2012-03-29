@@ -84,9 +84,9 @@ function refresh() {
                 var num = i + 1;
                 var lat = markers[i].location.latitude;
                 var lng = markers[i].location.longitude;
-                var content = "<div class=\"listItem\"><h2><a id=\"mapLink\" onclick=\"followLink("+lat+","+lng+")\" href=\"javascript:void(0)\"><img src=\""+imagePath + markers[i].serviceType + '.png'+"\"/>" + markers[i].name + "</a></h2><p>Approx. " + distance + " km away</p></div>";
+                var content = "<div class=\"listItem\"><h2><a id=\"mapLink\" onclick=\"followLink("+lat+","+lng+")\" href=\"javascript:void(0)\"><img src=\""+imagePath + "map-marker" + markers[i].serviceType + '.png'+"\"/>" + markers[i].name + "</a></h2><p>Approx. " + distance + " km away</p></div>";
                 list = list +  content;
-                var icon = imagePath + markers[i].serviceType + '.png';
+                var icon = imagePath + "map-marker" + markers[i].serviceType + '.png';
                     
                 marker = new google.maps.Marker({
                     position: new google.maps.LatLng(lat, lng),

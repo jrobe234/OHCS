@@ -47,7 +47,6 @@ public class MapBounds {
         filterStr += ") AND ";
         query += filterStr;
         query += "latitude < " + this.northEast.getLatitude() + " AND latitude > " + this.southWest.getLatitude() + " AND longitude < " + this.northEast.getLongitude() + " AND longitude > " + this.southWest.getLongitude() + "";
-
         ResultSet results = conn.executeQuery(query);
         while (results.next()) {
             int locId = results.getInt("LOCATIONID");

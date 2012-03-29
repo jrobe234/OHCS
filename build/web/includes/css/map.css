@@ -1,40 +1,80 @@
 .map {
     width: 100%;
+    position: relative;
+    padding-top: 20px;
 }
 
 .map .search {
-    height: 50px;
-    width: 984px;
+    position: relative;
+    width: 944px;
+    margin: 0px 20px 20px 20px;
     padding: 20px;
+    background: #EBEBEB;
+    border: 1px solid #BFBFBF;
+   
 }
 
 .map input#searchTextField {
-    width: 100%;
+    width: 924px;
     height: 40px;
+    padding: 10px;
+}
+
+.search #filters {
+    display: block;
+    width: 964px;
+    padding: 10px;
+}
+
+.filter {
+    display: inline;
+    width: 175px;
+    height: 50px;
+    margin: 10px 10px 10px 10px;
 }
 
 .map .leftcol { 
     float: left;
-    height: 768px;
-    width: 20%;
-    padding: 20px;
-    overflow: auto;;
+    height: 714px;
+    width: 200px;
+    margin: 20px 10px 20px 20px;
 }
 
-.map #map { 
-    height: 768px;
-    width: 100%;
+.leftcol h2.title {
+    height: 30px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    border: 1px solid #BFBFBF;
+    background: #EBEBEB;
 }
 
 .map .rightcol { 
-    float: right;
-    height: 100%;
-    width: 70%;
+    float: left;
+    width: 754px;
     padding: 20px;
 }
 
+.map #map { 
+    height: 714px;
+    width: 100%;
+    border: 1px solid #BFBFBF;
+}
+
+.leftcol #list {
+    height: 686px;
+    overflow: auto;
+}
+
 .listItem {
-    height: 100px;
+    height: 110px;
     padding: 10px;
-    border: 1px solid black;
+    border: 2px inset #000;
+    border-top: none;
+    background: #EBEBEB;
+}
+
+.listItem:first-child {
+    border-top: 2px inset #000;
 }

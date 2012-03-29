@@ -21,9 +21,15 @@
                     <input type="text" value="" id="searchTextField">
                     <div id="filters">
                     <label for="serviceType">Include on map: </label>
-                    <input type="checkbox" name="serviceType" value="1" checked="checked" id="doctor"/> <img src="<s:url value="/includes/images/1.png"/>"/>Doctor
-                    <input type="checkbox" name="serviceType" value="2" checked="checked" id="hospital"/> <img src="<s:url value="/includes/images/2.png"/>"/> Hospital
-                    <input type="checkbox" name="serviceType" value="3" checked="checked" id="pharmacy"/> <img src="<s:url value="/includes/images/3.png"/>"/> Pharmacy
+                    <div class="filter"><input type="checkbox" name="serviceType" value="1" checked="checked" id="doctor"/> <img src="<s:url value="/includes/images/map-marker1.png"/>"/>Doctor Offices</div>
+                    <div class="filter"><input type="checkbox" name="serviceType" value="2" checked="checked" id="hospital"/> <img src="<s:url value="/includes/images/map-marker2.png"/>"/> Hospitals</div>
+                    <div class="filter"><input type="checkbox" name="serviceType" value="3" checked="checked" id="pharmacy"/> <img src="<s:url value="/includes/images/map-marker3.png"/>"/> Pharmacies</div>
+                    </div>
+                </div>
+                     <div class="leftcol">
+                         <h2 class="title">Locations</h2>
+                    <div id="list">
+                        
                     </div>
                 </div>
                 <div class="rightcol">
@@ -31,13 +37,8 @@
 
                     </div>
                 </div>
-                <div class="leftcol">
-                    <div id="list">
-                        
-                    </div>
-                </div>
+               
                 <div class="clear"></div>
-                <div id="temp"></div>
             </div>
         </div>
     </body>
