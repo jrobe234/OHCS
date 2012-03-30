@@ -102,8 +102,8 @@ function refresh() {
                             'latLng': latlng
                         }, function(results, status) {
                             if (status == google.maps.GeocoderStatus.OK) {
-                                if (results[1]) {
-                                    var content = "<p>" + name + "</p><p>Address: " + results[1].formatted_address + "</p><p>Phone: " + phone + "</p>";
+                                if (results[0]) {
+                                    var content = "<p>" + name + "</p><p>Address: " + results[0].formatted_address + "</p><p>Phone: " + phone + "</p>";
                                     globalMap.panTo(latlng);
                                     infowindow.setContent(content);
                                     infowindow.open(globalMap, marker);
