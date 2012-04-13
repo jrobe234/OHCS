@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="org.csse3005gf.ohcs.hibernate">
+  
+    <class name="Billing" table='"billing"' lazy="true">
+        <cache usage="read-write"/>
+        <id name="userid" type="int" column='"userid"'>
+            <generator class="sequence">
+                <param name="sequence">BILLSEQ</param>
+            </generator>
+        </id>
+    
+   <!-- The first name is from java file, the second column is from db -->
+    
+        <property name="userid" column='"userid"' type="int"></property>  
+        <property name="credit" column='"credit"' type="float"></property>
+    
+    </class>
+  
+</hibernate-mapping>

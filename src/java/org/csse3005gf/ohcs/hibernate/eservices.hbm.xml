@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="org.csse3005gf.ohcs.hibernate">
+  
+    <class name="EServices" table='"ESERVICES"' lazy="true">
+        <cache usage="read-write"/>
+        <id name="sid" type="int" column='"SID"'>
+            <generator class="sequence">
+                <param name="sequence">ESERVSEQ</param>
+            </generator>
+        </id>
+    
+   <!-- The first name is from java file, the second column is from db -->
+    
+        <property name="sname" column='"SNAME"' type="java.lang.String"></property>
+        <property name="activities" column='"ACTIVITIES"' type="java.lang.String"></property> 
+        <property name="products" column='"PRODUCTS"' type="java.lang.String"></property>
+        <property name="addr" column='"ADDR"' type="java.lang.String"></property>
+        <property name="mailbox" column='"MAILBOX"' type="java.lang.String"></property>
+        <property name="phone" column='"PHONE"' type="java.lang.String"></property>
+        <property name="email" column='"EMAIL"' type="java.lang.String"></property>
+        <property name="homepage" column='"HOMEPAGE"' type="java.lang.String"></property>
+        <property name="fid" column='"FID"' type="java.lang.Integer"></property>
+        <property name="keywords" column='"KEYWORDS"' type="java.lang.String"></property>
+        <property name="fax" column='"FAX"' type="java.lang.String"></property>
+        <property name="executives" column='"EXECUTIVES"' type="java.lang.String"></property>
+    
+    </class>
+  
+</hibernate-mapping>
