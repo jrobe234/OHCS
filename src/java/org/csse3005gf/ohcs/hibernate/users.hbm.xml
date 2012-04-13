@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="org.csse3005gf.ohcs.hibernate">
+    <class name="Users" table='"USERS"'>
+        <id name="userid" type="java.lang.Integer">
+            <column name='"USERID"' length="11" not-null="true" sql-type="int" />
+            <generator class="sequence">
+                <param name="sequence">USERCSEQ</param>
+            </generator>
+        </id>
+    
+   <!-- The first name is from java file, the second column is from db -->
+    
+        <property name="email" column='"EMAIL"' type="java.lang.String"></property>  
+        <property name="password" column='"PASSWORD"' type="java.lang.String"></property>
+        <property name="title" column='"TITLE"' type="java.lang.String"></property>
+        <property name="fname" column='"FNAME"' type="java.lang.String"></property>  
+        <property name="lname" column='"LNAME"' type="java.lang.String"></property>   
+        <property name="gender" column='"GENDER"' type="java.lang.String"></property>    
+        <property name="dob" column='"DOB"' type="timestamp"></property>   
+        <property name="address" column='"ADDRESS"' type="java.lang.String"></property>    
+        <property name="phone" column='"PHONE"' type="java.lang.Integer"></property>  
+        <property name="userType" column='"USERTYPE"' type="int"></property>
+        <property name="ehr" column='"EHR"' type="java.lang.String"></property>
+        <property name="mcert" column='"MCERT"' type="java.lang.String"></property>  
+    
+    </class>
+  
+</hibernate-mapping>
