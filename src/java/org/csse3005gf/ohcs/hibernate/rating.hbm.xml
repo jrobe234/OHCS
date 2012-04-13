@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="org.csse3005gf.ohcs.hibernate">
+  
+    <class name="Rating" table='"RATING"' lazy="true">
+        <cache usage="read-write"/>
+        <id name="ratingid" type="int" column='"ratingid"'>
+            <generator class="sequence">
+                <param name="sequence">RATINGSEQ</param>
+            </generator>
+        </id>
+    
+   <!-- The first name is from java file, the second column is from db -->
+    
+        <property name="doctorid" column='"doctorid"' type="int"></property>  
+        <property name="patientid" column='"patientid"' type="int"></property>  
+        <property name="overallrating" column='"overallrating"' type="int"></property>  
+        <property name="knowledge" column='"knowledge"' type="int"></property>
+        <property name="empathy" column='"empathy"' type="int"></property>
+        <property name="communication" column='"communication"' type="int"></property>
+        <property name="comments" column='"comments"' type="string"></property>
+        <property name="punctuality" column='"punctuality"' type="int"></property>
+        
+        
+    
+    </class>
+  
+</hibernate-mapping>

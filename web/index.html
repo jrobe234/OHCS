@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Online Health Consultation </title>
+        <link href="Style.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript">
+
+            //change "$" to "xg" instead:
+
+            var xg = jQuery.noConflict();
+
+            //main function starts:	
+
+            xg(document).ready(function(){
+	
+                //overlay function:
+                xg("#top_signin") .click(function()
+                {
+                    xg("#top_overlaybg"). fadeIn("slow");
+                    xg("#top_overlay_outside"). fadeIn("slow");
+                });
+                xg("#top_overlay_close") .click(function()
+                {
+                    xg("#top_overlay_outside"). fadeOut("slow");
+                    xg("#top_overlaybg"). fadeOut("slow");
+                });
+                //navigation bar hover function:
+                //overlay hover function:
+                //input focus and blur:
+                var value = xg(".text_input").val();
+                xg(".text_input") .focus(function()
+                {
+                    xg(".text_input"). css({"color":"#444", "font-style":"normal"});
+                    xg(".text_input"). val("");
+                });
+                xg(".text_input") .blur(function()
+                {	  
+                    xg(".text_input"). css({"color":"#ccc", "font-style":"italic"});
+                    xg(".text_input"). val(value);
+                });
+            });
+        </script>
+
+    </head>
+
+    <body>
+        <!-- header -->
+        <div id="top_topbar"></div>
+        <div id="top_body">
+            <!-- Login box -->
+            <div id="top_overlaybg"></div>
+            <div id="top_overlay_outside">
+                <div id="top_overlay_close"></div>
+                <div id="top_overlay_inside">
+                    <br />
+                    <div class="top_overlay_instruction">Sign in:</div>
+                    <form action="login.action" method="POST">
+                        <table class="top_overlay_table">
+                            <tr>
+                                <td class="top_regtable_left">Email:</td>
+                                <td class="top_regtable_right"><input type="text" name="email" /></td>
+                            </tr>
+                            <tr>
+                                <td class="top_regtable_left">Password:</td>
+                                <td class="top_regtable_right"><input type="password" name="password" /></td>
+                            </tr>
+                            <tr>
+                                <td class="top_regtable_left"></td>
+                                <td class="top_regtable_right"><br /><input type="submit" value="Login" /></td>
+                            </tr>
+                        </table>
+                        <div class="top_overlay_instruction">No account? Register now as a:</div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<a href="#" >Patient</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" >Doctor</a>
+                    </form>
+                </div>
+            </div>
+            <div id="top_header">
+                <div id="top_logo"></div>
+                <div id="top_signin_right"></div>
+                <div id="top_signin">login/register</div>
+                <div id="top_signin_left"></div>
+            </div>
+            <div id="top_navigation">
+                <div id="top_scrollbar">
+                    <marquee id=Frederic onmouseover=Frederic.stop() onmouseout=Frederic.start() scrollAmount=1 scrollDelay=30 direction=left  height=20;>
+                        scrolling...</marquee>
+                </div>
+            </div>
+        </div>
+        <!-- individual result header -->
+
+        <!-- body -->
+        <div id="individualres_body" style="height:400px">
+            <div id="main_search">
+                <div id="findDoctors">Find Doctors:</div>
+                <div id="inputfield">
+                    <input class="text_input" type="text" value="Searching Using Disease Name or Doctor Name:" 
+                           style="width: 400px; height:30px; color: rgb(204, 204, 204); font-style: italic; " />
+                </div>
+                <div id="searchBtn"><input type="button" value="Search" style="float:right;"/></div>
+            </div>
+        </div>
+
+        <!-- function -->
+
+        <!-- footer -->
+        <div id="footer_body">
+            <div id="footer_line"></div>
+            <div id="footer_content"><a href="About.html" >About Us</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" >Contact Us</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" >Terms &amp; Conditions</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="#" >Privacy Policy</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="#" >Security</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="promise.html" >Our Promise</a></div>
+            <!--<div id="footer_declearation">Copyright (c) 2012 F   </div>-->
+        </div>
+    </body>
+</html>

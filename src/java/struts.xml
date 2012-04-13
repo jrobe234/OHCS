@@ -1,0 +1,70 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!--<include file="example.xml"/>-->
+    <!-- Configuration for the default package. -->
+    <package name="OHCS" extends="struts-default">
+    
+    <!-- Login -->
+        <action name="login" class="org.csse3005gf.ohcs.account.LoginAction">
+            <result name="doctor" type="redirectAction">ShowDoctor?id=${id}</result>
+            <result name="patient" type="redirectAction">ShowPatient?id=${id}</result>
+            <result name="admin">admin.jsp</result>
+            <result name="input">index.html</result>
+        </action>
+        
+        <!-- Logout -->
+        <action name="logout" class="org.csse3005gf.ohcs.account.LogoutAction">
+            <result name="success">index.html</result>
+        </action>
+        
+     <!-- Add a new doctor -->
+        <action name="AddDoctor" class="org.csse3005gf.ohcs.account.AddDoctorAction">
+            <result name="success">success.jsp</result>
+            <result name="input">regdoc.jsp</result>
+        </action>
+     
+     <!-- show a doctor -->
+        <action name="ShowDoctor" class="org.csse3005gf.ohcs.account.ShowDoctorAction">
+            <result name="success">doctor.jsp</result>
+            <result name="input">doctor.jsp</result>
+        </action>
+        
+        <!-- show a patient -->
+        <action name="ShowPatient" class="org.csse3005gf.ohcs.account.ShowPatientAction">
+            <result name="success">patient.jsp</result>
+            <result name="input">patient.jsp</result>
+        </action>
+        
+        <!-- add credit
+        <action name="Invoice" class="com.myapp.struts.InvoiceAction">
+            <result name="success">confirm_payment.jsp</result>
+            <result name="input">patient.jsp</result>
+        </action>
+        -->
+        
+        <!-- Show Chat Log -->
+        <action name="ShowChatLog" class="org.csse3005gf.ohcs.consultation.ShowChatLogAction">
+            <result name="success">showChatLog.jsp</result>
+            <result name="input">showChatLog.jsp</result>
+        </action>
+       
+        
+        <!-- Minus Expense
+        <action name="MinusExpenseAction" class="com.myapp.struts.MinusExpenseAction">
+            <result name="success">patient.jsp</result>
+            <result name="input">patient.jsp</result>
+        </action>
+        -->
+        
+        <!--
+        <action name="ShowPatientCreditAction" class="com.myapp.struts.ShowPatientCreditAction">
+            <result name="success">showInvoice.jsp</result>
+            <result name="input">patient.jsp</result>
+        </action>
+        -->
+        
+    </package>
+</struts>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="org.csse3005gf.ohcs.hibernate">
+  
+    <class name="TimeTable" table='"TIMETABLE"' lazy="true">
+        <cache usage="read-write"/>
+        <id name="timetableid" type="int" column='"timetableid"'>
+            <generator class="sequence">
+                <param name="sequence">TIMETABLESEQ</param>
+            </generator>
+        </id>
+    
+   <!-- The first name is from java file, the second column is from db -->
+    
+        <property name="doctorId" column='"doctorid"' type="int"></property>  
+        <property name="mon" column='"mon"' type="string"></property>  
+        <property name="tue" column='"tue"' type="string"></property>  
+        <property name="wed" column='"wed"' type="string"></property>   
+        <property name="thu" column='"thu"' type="string"></property>    
+        <property name="fri" column='"fri"' type="string"></property>   
+        <property name="sat" column='"sat"' type="string"></property>    
+        <property name="sun" column='"sun"' type="string"></property>
+    
+    </class>
+  
+</hibernate-mapping>
