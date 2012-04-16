@@ -60,7 +60,7 @@ public class MapBounds {
             String phone = results.getString("phone");
             int sType = results.getInt("serviceType");
             String desc = "ADD DESCRIPTION TO DATABASE";
-            HealthCareService service = new HealthCareService(id, lat, lng, name, phone, desc, sType);
+            Eservices service = new EServices(id, lat, lng, name, phone, desc, sType);
             JSONObject JSONservice = service.toJSONObject();
             double dist = LatLngTool.distance(new LatLng(lat, lng), center, LengthUnit.KILOMETER);
             JSONservice.put("dist", dist);
