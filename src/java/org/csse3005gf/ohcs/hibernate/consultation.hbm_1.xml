@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="org.csse3005gf.ohcs.hibernate">
+       
+    <class name="Consultation" table='"CONSULTATION"'>
+        <id name="consultationid" type="java.lang.Integer">
+            <column name='"ConsultationId"' length="11" not-null="true" sql-type="int" />
+            <generator class="sequence">
+                <param name="sequence">CONSULTSEQ</param>
+            </generator>
+        </id>
+    
+   <!-- The first name is from java file, the second column is from db -->
+    
+        <property name="doctorid" column='"DoctorId"' type="java.lang.Integer"></property>  
+        <property name="patientid" column='"PatientId"' type="java.lang.Integer"></property>
+        <property name="startDateTime" column='"StartDateTime"' type="timestamp"></property>
+        <property name="endDateTime" column='"EndDateTime"' type="timestamp"></property>
+        <property name="content" column='"Content"' type="java.lang.String"></property>
+    
+    </class>
+  
+</hibernate-mapping>
