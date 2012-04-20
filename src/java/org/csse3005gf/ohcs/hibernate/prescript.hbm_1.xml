@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="org.csse3005gf.ohcs.hibernate">
+  
+    <class name="Prescript" table='"PRESCRIPT"' lazy="true">
+        <cache usage="read-write"/>
+        <id name="prescriptid" type="java.lang.Integer" column='"prescriptid"'>
+            <generator class="sequence">
+                <param name="sequence">PRESCRIPTSEQ</param>
+            </generator>
+        </id>
+    
+   <!-- The first name is from java file, the second column is from db -->
+    
+        <property name="doctorid" column='"doctorid"' type="java.lang.Integer"></property>  
+        <property name="patientid" column='"patientid"' type="java.lang.Integer"></property>  
+        <property name="date" column='"date"' type="timestamp"></property>  
+        <property name="title" column='"title"' type="java.lang.String"></property>   
+        <property name="content" column='"content"' type="java.lang.String"></property>
+    
+    </class>
+  
+</hibernate-mapping>
+

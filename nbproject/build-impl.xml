@@ -17,7 +17,7 @@
         - cleanup
 
         -->
-<project xmlns:webproject1="http://www.netbeans.org/ns/web-project/1" xmlns:webproject2="http://www.netbeans.org/ns/web-project/2" xmlns:webproject3="http://www.netbeans.org/ns/web-project/3" basedir=".." default="default" name="OHCS-impl">
+<project xmlns:webproject1="http://www.netbeans.org/ns/web-project/1" xmlns:webproject2="http://www.netbeans.org/ns/web-project/2" xmlns:webproject3="http://www.netbeans.org/ns/web-project/3" basedir=".." default="default" name="ohcs2-impl">
     <import file="ant-deploy.xml"/>
     <fail message="Please build using Ant 1.7.1 or higher.">
         <condition>
@@ -37,18 +37,43 @@
     <target depends="-pre-init" name="-init-private">
         <property file="nbproject/private/private.properties"/>
     </target>
-    <target depends="-pre-init,-init-private" name="-init-user">
+    <target name="-pre-init-libraries">
+        <property location=".\lib\nblibraries.properties" name="libraries.path"/>
+        <dirname file="${libraries.path}" property="libraries.dir.nativedirsep"/>
+        <pathconvert dirsep="/" property="libraries.dir">
+            <path path="${libraries.dir.nativedirsep}"/>
+        </pathconvert>
+        <basename file="${libraries.path}" property="libraries.basename" suffix=".properties"/>
+        <available file="${libraries.dir}/${libraries.basename}-private.properties" property="private.properties.available"/>
+    </target>
+    <target depends="-pre-init-libraries" if="private.properties.available" name="-init-private-libraries">
+        <loadproperties encoding="ISO-8859-1" srcfile="${libraries.dir}/${libraries.basename}-private.properties">
+            <filterchain>
+                <replacestring from="$${base}" to="${libraries.dir}"/>
+                <escapeunicode/>
+            </filterchain>
+        </loadproperties>
+    </target>
+    <target depends="-pre-init,-init-private,-init-private-libraries" name="-init-libraries">
+        <loadproperties encoding="ISO-8859-1" srcfile="${libraries.path}">
+            <filterchain>
+                <replacestring from="$${base}" to="${libraries.dir}"/>
+                <escapeunicode/>
+            </filterchain>
+        </loadproperties>
+    </target>
+    <target depends="-pre-init,-init-private,-init-libraries" name="-init-user">
         <property file="${user.properties.file}"/>
         <!-- The two properties below are usually overridden -->
         <!-- by the active platform. Just a fallback. -->
         <property name="default.javac.source" value="1.4"/>
         <property name="default.javac.target" value="1.4"/>
     </target>
-    <target depends="-pre-init,-init-private,-init-user" name="-init-project">
+    <target depends="-pre-init,-init-private,-init-libraries,-init-user" name="-init-project">
         <property file="nbproject/project.properties"/>
     </target>
     <target depends="-pre-init,-init-private,-init-user,-init-project,-init-macrodef-property" if="dist.ear.dir" name="-do-ear-init"/>
-    <target depends="-pre-init,-init-private,-init-user,-init-project,-init-macrodef-property" name="-do-init">
+    <target depends="-pre-init,-init-private,-init-libraries,-init-user,-init-project,-init-macrodef-property" name="-do-init">
         <condition property="have.tests">
             <or>
                 <available file="${test.src.dir}"/>
@@ -200,7 +225,7 @@
         <!-- Empty placeholder for easier customization. -->
         <!-- You can override this target in the ../build.xml file. -->
     </target>
-    <target depends="-pre-init,-init-private,-init-user,-init-project,-do-init" name="-init-check">
+    <target depends="-pre-init,-init-private,-init-libraries,-init-user,-init-project,-do-init" name="-init-check">
         <fail unless="src.dir">Must set src.dir</fail>
         <fail unless="test.src.dir">Must set test.src.dir</fail>
         <fail unless="build.dir">Must set build.dir</fail>
@@ -524,7 +549,7 @@ exists or setup the property manually. For example like this:
         <fail unless="profiler.info.jvm">Must set JVM to use for profiling in profiler.info.jvm</fail>
         <fail unless="profiler.info.jvmargs.agent">Must set profiler agent JVM arguments in profiler.info.jvmargs.agent</fail>
     </target>
-    <target depends="-pre-init,-init-private,-init-user,-init-project,-do-init,-post-init,-init-check,-init-macrodef-property,-init-macrodef-javac,-init-macrodef-junit,-init-macrodef-java,-init-macrodef-nbjpda,-init-macrodef-nbjsdebug,-init-macrodef-debug,-init-taskdefs,-init-ap-cmdline" name="init"/>
+    <target depends="-pre-init,-init-private,-init-libraries,-init-user,-init-project,-do-init,-post-init,-init-check,-init-macrodef-property,-init-macrodef-javac,-init-macrodef-junit,-init-macrodef-java,-init-macrodef-nbjpda,-init-macrodef-nbjsdebug,-init-macrodef-debug,-init-taskdefs,-init-ap-cmdline" name="init"/>
     <!--
                 COMPILATION SECTION
             -->
@@ -674,15 +699,47 @@ exists or setup the property manually. For example like this:
     <target depends="init,compile,compile-jsps,-pre-dist,-do-dist-with-manifest,-do-dist-without-manifest" name="do-dist"/>
     <target depends="init" if="dist.ear.dir" name="library-inclusion-in-manifest">
         <copyfiles files="${libs.struts2lib-2-0-14-core.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
-        <copyfiles files="${libs.hibernate-support.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${libs.MyEmail.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.hibernate-support.classpath}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.commons-email-1.2.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.commons-fileupload-1.2.1.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.commons-io-1.3.2.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.commons-logging-1.0.4.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.commons-logging-api-1.1.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.freemarker-2.3.16.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.javassist-3.14.0-GA.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.json_simple-1.1.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.log4j-1.2.16.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.mysql-connector-java-5.1.18-bin.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.ognl-3.0.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.ojdbc6.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.simplelatlng-1.0.1-javadoc.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.simplelatlng-1.0.1.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.struts2-core-2.2.1.1.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.xwork-core-2.2.1.1.jar}" iftldtodir="${build.web.dir}/WEB-INF" todir="${dist.ear.dir}/lib"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
     <target depends="init" name="library-inclusion-in-archive" unless="dist.ear.dir">
         <copyfiles files="${libs.struts2lib-2-0-14-core.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
-        <copyfiles files="${libs.hibernate-support.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copyfiles files="${libs.MyEmail.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${libs.hibernate-support.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.commons-email-1.2.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.commons-fileupload-1.2.1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.commons-io-1.3.2.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.commons-logging-1.0.4.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.commons-logging-api-1.1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.freemarker-2.3.16.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.javassist-3.14.0-GA.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.json_simple-1.1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.log4j-1.2.16.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.mysql-connector-java-5.1.18-bin.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.ognl-3.0.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.ojdbc6.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.simplelatlng-1.0.1-javadoc.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.simplelatlng-1.0.1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.struts2-core-2.2.1.1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copyfiles files="${file.reference.xwork-core-2.2.1.1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
     </target>
     <target depends="init" if="dist.ear.dir" name="-clean-webinf-lib">
         <delete dir="${build.web.dir}/WEB-INF/lib"/>

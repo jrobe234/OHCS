@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+<!--  postgresql configuration 
+	<property name="connection.url">jdbc:postgresql://localhost/libraryweb</property>
+	<property name="connection.username">postgres</property>
+	<property name="connection.password">p</property>
+	<property name="connection.driver_class">org.postgresql.Driver</property>
+	<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        
+        -->
+	
+<!--  mysql configuration 
+        <property name="connection.username">root</property>
+        <property name="connection.url">
+            jdbc:mysql://localhost:3306/arkilis
+        </property>
+        <property name="dialect">
+      org.hibernate.dialect.MySQLDialect
+        </property>
+        <property name="connection.password">x</property>
+        <property name="connection.driver_class">
+      com.mysql.jdbc.Driver
+        </property>-->
+    
+    
+        <!-- For Oracle -->
+        <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <property name="connection.driver_class">
+            oracle.jdbc.driver.OracleDriver
+        </property>
+        <property name="connection.url">
+            jdbc:oracle:thin:@oracle.students.itee.uq.edu.au:1521:iteeo
+        </property>
+        <property name="connection.username">CSSE3005GF</property>
+        <property name="connection.password">229681</property>
+        
+        
+        <property name="current_session_context_class">thread</property>
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+    
+        <!-- Use the Hibernate built-in pool for tests. -->
+        <property name="connection.pool_size">3</property>
+    
+        <!-- Disable second-level cache, effectively -->
+        <property name="cache.provider_class">
+        <!--org.hibernate.cache.NoCacheProvider-->
+            org.hibernate.cache.HashtableCacheProvider
+        </property>
+        <property name="cache.use_query_cache">false</property>
+        <property name="cache.use_minimal_puts">false</property>
+        <property name="max_fetch_depth">3</property>
+        <!-- Batch inserts are currently broken, no idea why... -->
+        <property name="jdbc.batch_size">0</property>
+        <!--<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>-->
+
+        <!-- add necessary *.hbm.xml files -->
+        <mapping resource="org/csse3005gf/ohcs/hibernate/user.hbm.xml" />
+        <mapping resource="org/csse3005gf/ohcs/hibernate/timetable.hbm.xml" />
+        <mapping resource="org/csse3005gf/ohcs/hibernate/invoice.hbm.xml" />
+        <mapping resource="org/csse3005gf/ohcs/hibernate/consultation.hbm.xml" />
+        <mapping resource="org/csse3005gf/ohcs/hibernate/appointment.hbm.xml" />
+        <mapping resource="org/csse3005gf/ohcs/hibernate/prescript.hbm.xml" />
+       
+	
+    </session-factory>
+</hibernate-configuration>

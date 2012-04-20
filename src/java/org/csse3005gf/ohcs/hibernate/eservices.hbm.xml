@@ -19,7 +19,9 @@
         <property name="activities" column='"ACTIVITIES"' type="java.lang.String"></property> 
         <property name="products" column='"PRODUCTS"' type="java.lang.String"></property>
         <property name="addr" column='"ADDR"' type="java.lang.String"></property>
-        <property name="mailbox" column='"MAILBOX"' type="java.lang.String"></property>
+        <property name="suburb" column='"SUBURB"' type="java.lang.String"></property>
+        <property name="state" column='"STATE"' type="java.lang.String"></property>
+        <property name="pcode" column='"PCODE"' type="java.lang.String"></property>
         <property name="phone" column='"PHONE"' type="java.lang.String"></property>
         <property name="email" column='"EMAIL"' type="java.lang.String"></property>
         <property name="homepage" column='"HOMEPAGE"' type="java.lang.String"></property>
@@ -27,6 +29,9 @@
         <property name="keywords" column='"KEYWORDS"' type="java.lang.String"></property>
         <property name="fax" column='"FAX"' type="java.lang.String"></property>
         <property name="executives" column='"EXECUTIVES"' type="java.lang.String"></property>
+        <property name="latitude" column='"latitude"' type="float"></property>   
+        <property name="longitude" column='"longitude"' type="float"></property>  
+        <property name="serviceType" column='"type"' type="INTEGER"></property>  
     
     </class>
   
